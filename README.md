@@ -1,6 +1,6 @@
 <h1>ExpNo 1 :Developing AI Agent with PEAS Description</h1>
-<h3>Name: NALINIPRIYA G </h3>
-<h3>Register Number/Staff Id: TSIT031</h3>
+<h3>Name: Mosas Raj A </h3>
+<h3>Register Number: 212224060159</h3>
 
 
 <h3>AIM:</h3>
@@ -40,3 +40,54 @@
 <p>Treat unhealthy patients in each room. And check for the unhealthy patients in random room</p>
 <h3>STEP 5:</h3>
 <p>Measure the performance parameters: For each treatment performance incremented, for each movement performance decremented</p>
+
+## Program:
+```c
+import random
+
+class MedicinePrescribingAgent:
+    
+    def __init__(self):
+        self.performance = 0
+        self.rooms = ["Room1", "Room2"]
+        self.current_room = random.choice(self.rooms)  # agent starts in random room
+
+    def sense_environment(self):
+        # Random temperature (97–102°F)
+        temperature = round(random.uniform(97, 102), 1)
+        return temperature
+
+    def prescribe_medicine(self, temperature):
+        if temperature > 98.5:  # unhealthy patient
+            print(f"Patient in {self.current_room} has fever ({temperature}°F). Prescribing medicine.")
+            self.performance += 10
+        else:
+            print(f"Patient in {self.current_room} is healthy ({temperature}°F). No medicine required.")
+
+    def move_to_other_room(self):
+        other_room = [room for room in self.rooms if room != self.current_room][0]
+        print(f"Moving from {self.current_room} to {other_room}.")
+        self.current_room = other_room
+        self.performance -= 1  # penalty for movement
+
+    def run_agent(self, cycles=5):
+        for _ in range(cycles):
+            temp = self.sense_environment()
+            self.prescribe_medicine(temp)
+            self.move_to_other_room()
+            print(f"Current Performance: {self.performance}\n")
+
+
+# Run the agent
+agent = MedicinePrescribingAgent()
+agent.run_agent(cycles=6)
+print("Final Performance Score:", agent.performance)
+```
+## Output:
+
+<img width="820" height="812" alt="image" src="https://github.com/user-attachments/assets/59a41b0a-4cce-42ef-a9f0-addb9e1fb794" />
+
+## Result:
+
+PEAS description for the given AI problem and develop an AI was observed successfully
+
